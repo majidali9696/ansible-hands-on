@@ -1,0 +1,17 @@
+---
+- hosts: localhost
+  become: yes
+
+  tasks:
+  - name: install appache server
+    apt:
+      name: apache2 
+      state: latest
+  - name: create index file
+    file:
+      name: /var/www/html/index1.html
+      state: touch
+  - name: add web content
+    lineinfile:
+      line: "Apache server is working"
+      path: /var/www/html/index1.html
